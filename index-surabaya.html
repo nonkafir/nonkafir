@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="5 wisata terbaik di Surabaya, Jawa Timur. Jelajahi tempat-tempat wisata populer seperti Tunjungan Romansa, Masjid Al-Akbar, Surabaya North Quay, dan lainnya.">
+  <title>5 Best Attractions in Surabaya - Jawa Timur</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans bg-gray-100 back" >
+  <!-- Header -->
+  <header class="bg-teal-600 text-white fixed w-full z-10" >
+    <div class="container mx-auto px-4" >
+      <nav class="flex items-center justify-between py-4">
+        <a href="index.html" class="text-2xl font-bold hover:text-teal-300 transition-colors rounded-s-md">EastJavaVentura</a>
+        <ul class="flex space-x-6">
+          <li><a href="index.html" class="hover:text-teal-300 transition-colors transition-colors ">Back to Home</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="pt-16">
+    <section class="py-16 bg-gradient-to-t from-teal-50 to-teal-100">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold mb-8 text-center shadow md:shadow-lg ">5 Best Attractions in Surabaya</h1>
+        
+        <!-- Gallery Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 " id="placesGrid">
+          <!-- Places will be rendered here by JavaScript -->
+        </div>
+      </div>
+    </section>
+</main>
+
+
+  <!-- Modal Template -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden transition-opacity duration-300 ">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96 transform scale-95 transition-transform duration-300 ">
+      <img id="modalImage" class="w-48 h-48 object-cover mx-auto mb-4 rounded " src="" alt="Modal Image">
+      <h2 id="modalTitle" class="text-xl font-semibold mb-2"></h2>
+      <p id="modalShortDescription" class="text-gray-600 mb-2"></p>
+      <p id="modalDescription" class="text-gray-600 mb-4"></p>
+      <p id="modalRating" class="text-yellow-500 mb-2"></p>
+      <div class="flex justify-between mb-4">
+        <a id="modalMapsLink" href="#" target="_blank" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-all transform hover:scale-105">See Maps</a>
+        <a id="modalTicketLink" href="#" target="_blank" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all transform hover:scale-105">Enter the Website</a>
+      </div>
+      <div class="mt-4 flex justify-end">
+        <button onclick="closeModal()" class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition-all transform hover:scale-105">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-teal-600 text-white py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2024 EastJavaVentura. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Daftar tempat wisata di Surabaya
+    const places = [
+      {
+        title: 'Tunjungan Romansa',
+        shortDescription: 'A historic icon in Surabaya with colonial-style ancient buildings.',
+        description: 'Jalan Tunjungan, also known as "Tunjungan Romansa," is one of the historic icons in Surabaya, East Java. This street offers a nostalgic atmosphere with ancient colonial-style buildings lining its sides, creating a unique blend of history and modern life.',
+        imgSrc: 'https://kilasjatim.com/wp-content/uploads/2024/01/Lumii_20240120_135857477-1536x1157.jpg',
+        mapsLink: 'https://maps.app.goo.gl/QLUTFZBuPHon8Lo19',
+        rating: 4.5,
+        ticketLink: 'https://www.instagram.com/tunjunganromansa/?hl=en'
+      },
+      {
+        title: 'Masjid Al-Akbar',
+        shortDescription: 'One of the largest mosques in Indonesia with magnificent architecture.',
+      description: 'Masjid Al-Akbar, also known as the Grand Mosque of Surabaya, is one of the largest mosques in Indonesia. With magnificent architecture that combines traditional and modern elements, this mosque features a large dome in a bluish-green color.',
+        imgSrc: 'Surabaya/img/masjid agung.jpeg', 
+        mapsLink: 'https://maps.app.goo.gl/qptXY8T8t8vzar6g6',
+        rating: 4.8,
+        ticketLink: 'https://www.masjidalakbar.or.id/'
+      },
+      {
+        title: 'Surabaya North Quay',
+        shortDescription: 'A modern tourist destination with beautiful sea views.',
+        description: 'Surabaya North Quay is a modern tourist destination located in the Tanjung Perak harbor area of Surabaya. This place offers beautiful sea views, complete with restaurants, cafes, and recreational areas.',
+        imgSrc: 'Surabaya/img/surabaya north quay.jpeg',
+        mapsLink: 'https://maps.app.goo.gl/YxCpQPzaFRoKVvKB7',
+        rating: 4.3,
+        ticketLink: 'https://www.instagram.com/snq_sunsetpoint/?hl=en'
+      },
+      {
+        title: 'Alun-Alun Surabaya',
+        shortDescription: 'An iconic public space for relaxation and exercise.',
+        description: 'Alun-Alun Surabaya is an iconic public space located in the center of Surabaya. This place has become a favorite destination for relaxation, exercise, and enjoying the city atmosphere.',
+        imgSrc: 'Surabaya/img/alun alun surabaya.jpeg', 
+        mapsLink: 'https://maps.app.goo.gl/q1N96nfHQdYATtCP7',
+        rating: 4.7,
+        ticketLink: '#'
+      },
+      {
+        title: 'Tugu Pahlawan',
+        shortDescription: 'A historic monument symbolizing the struggle of the people of Surabaya.',
+        description: 'Tugu Pahlawan is a historic monument that symbolizes the struggle and bravery of the people of Surabaya in the battle of November 10, 1945, against the colonizers.',
+        imgSrc: 'https://tiketwisata.surabaya.go.id/storage/tour/monumen-tugu-pahlawan_1680340884.jpeg',
+        mapsLink: 'https://maps.app.goo.gl/kogK8sxCUL5ppD95A',
+        rating: 4.6,
+        ticketLink: 'https://tiketwisata.surabaya.go.id/destination/monumen-tugu-pahlawan'
+      },
+    ];
+
+    // Mengambil elemen tempat wisata
+    const placesGrid = document.getElementById('placesGrid');
+
+    // Fungsi untuk membuat elemen tempat wisata
+    function createPlaceElement(place) {
+      const placeElement = document.createElement('div');
+      placeElement.className = 'bg-white p-6 rounded-lg shadow-lg cursor-pointer';
+      placeElement.innerHTML = `
+        <img class="w-full h-48 object-cover rounded transition-transform duration-300 transform hover:scale-105" src="${place.imgSrc}" alt="${place.title}">
+        <h3 class="text-xl font-semibold mt-2">${place.title}</h3>
+        <p class="text-gray-600">${place.shortDescription}</p>
+      `;
+      placeElement.onclick = () => openModal(place);
+      return placeElement;
+    }
+
+    // Menampilkan tempat wisata
+    places.forEach(place => {
+      const placeElement = createPlaceElement(place);
+      placesGrid.appendChild(placeElement);
+    });
+
+    // Fungsi untuk membuka modal
+    function openModal(place) {
+      document.getElementById('modalImage').src = place.imgSrc;
+      document.getElementById('modalTitle').innerText = place.title;
+      document.getElementById('modalShortDescription').innerText = place.shortDescription;
+      document.getElementById('modalDescription').innerText = place.description;
+      document.getElementById('modalRating').innerText = 'Rating: ' + place.rating + ' ⭐';
+      document.getElementById('modalMapsLink').href = place.mapsLink;
+      document.getElementById('modalTicketLink').href = place.ticketLink;
+
+  // Menampilkan modal dengan animasi
+         const modal = document.getElementById('modal');
+         modal.classList.remove('hidden');
+         modal.classList.add('opacity-0');
+         setTimeout(() => {
+           modal.classList.remove('opacity-0');
+           modal.classList.add('opacity-100');
+  }, 0);  
+}
+
+// Fungsi untuk menutup modal
+  function closeModal() {
+    const modal = document.getElementById('modal');
+    modal.classList.remove('opacity-100');
+    modal.classList.add('opacity-0');
+
+  // Setelah animasi selesai, sembunyikan modal
+  setTimeout(() => {
+    modal.classList.add('hidden');
+  }, 300); // Durasi yang sama dengan durasi transisi
+} 
+  </script>
+</body>
+</html>

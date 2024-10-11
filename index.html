@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EastJavaVentura</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    transitionProperty: {
+                        'height': 'height', 
+                        'spacing': 'margin, padding',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+
+        let slideIndex = 0;
+        function changeSlide(n) {
+            showSlide(slideIndex += n);
+        }
+
+        function showSlide(n) {
+            let slides = document.querySelectorAll(".slide");
+            if (n >= slides.length) { slideIndex = 0 }
+            if (n < 0) { slideIndex = slides.length - 1 }
+            slides.forEach((slide, i) => {
+                slide.classList.add('hidden');
+                slide.classList.remove('block');
+            });
+            slides[slideIndex].classList.remove('hidden');
+            slides[slideIndex].classList.add('block');
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            showSlide(slideIndex);
+            setInterval(() => changeSlide(1), 2500); // Auto slide every 2,5 seconds
+        });
+         // Menambahkan efek shrink pada background image saat scroll
+         document.addEventListener("scroll", function() {
+            const backgroundSection = document.getElementById("home");
+            if (window.scrollY > 100) {
+                backgroundSection.classList.add("shrunk");
+            } else {
+                backgroundSection.classList.remove("shrunk");
+            }
+        });
+    </script>
+</head>
+<body class="font-sans bg-gray-100 bg-gradient-to-t from-teal-50 to-teal-100">
+    <header class="bg-teal-600 text-white fixed w-full z-10 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 ">
+            <nav class="flex items-center justify-between py-4 ">
+                <a href="#" class="text-2xl font-bold shadow-2xl hover:text-teal-300 transition-colors"> EastJavaVentura 
+                </a>
+                <ul class="flex space-x-6 relative">
+                    <li><a href="#home" class="hover:text-teal-300 transition-colors">Home</a></li>
+                    
+                    <!-- Destination Menu with Hover Dropdown -->
+                    <li class="relative group">
+                        <a href="#destination" class="hover:text-teal-300 transition-colors">Destination</a>
+                        <!-- Dropdown Menu -->
+                        <ul class="absolute hidden group-hover:block bg-teal-100 text-black mt-0 rounded-lg shadow-lg w-40 z-10">
+                            <li><a href="index-surabaya.html" class="block px-4 py-2 hover:bg-blue-500 hover:text-white transition-colors">Surabaya</a></li>
+                            <li><a href="index-malang.html" class="block px-4 py-2 hover:bg-blue-500 hover:text-white transition-colors">Malang</a></li>
+                            <li><a href="index-batu.html" class="block px-4 py-2 hover:bg-blue-500 hover:text-white transition-colors">Batu</a></li>
+                            <li><a href="index-banyuwangi.html" class="block px-4 py-2 hover:bg-blue-500 hover:text-white transition-colors">Banyuwangi</a></li>
+                        </ul>
+                    </li>
+                
+                    <li><a href="#contact" class="hover:text-teal-300 transition-colors">Our Contact</a></li>
+                </ul>
+                
+                
+            </nav> 
+        </div>
+    </header>
+
+    <main class="pt-16 "> 
+        <section id="home" class="min-h-screen flex items-center justify-center bg-cover bg-center bg-fixed relative" style="background-image: url('homepage/img/rock-ocean-landscape.jpg');">
+            <div class="text-center mb-8 relative z-10 p-4 bg-[rgba(255,255,255,0.5)] rounded-lg shadow-lg "> <!-- Latar belakang untuk teks -->
+                <h1 class="text-5xl font-bold mb-4 text-teal-900 ">Welcome to East Java Tourism</h1> <!-- Teks dengan warna -->
+                <p class="text-xl text-gray-800">Explore the beauty of nature and culture in East Java!</p> <!-- Teks dengan warna -->
+            </div>
+            
+        </section>        
+
+        <section id="slideshow" class="py-16">
+            <div class="relative w-full max-w-4xl mx-auto mt-16">
+                <!-- Slide 1 (Surabaya) -->
+                <div class="slide hidden">
+                    <a href="index-surabaya.html">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Tugu_Pahlawan_Surabaya.jpg" alt="Surabaya" class="w-full h-96 object-cover rounded-lg shadow-lg">
+                        <div class="text-blue text-center mt-2 text-xl font-semibold">Surabaya</div>
+                    </a>
+                    <!-- Wrapper Button -->
+                    <div class="flex justify-center mt-4">
+                        <button onclick="window.location.href='index-surabaya.html'" class="bg-teal-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-teal-700 hover:-translate-y-1 hover:scale-110">
+                            5 Best Attractions in Surabaya
+                        </button>
+                    </div>
+                </div>
+        
+                <!-- Slide 2 (Malang) -->
+                <div class="slide hidden">
+                    <a href="index-malang.html">
+                        <img src="https://e-dazibao.com/wp-content/uploads/2019/11/kampung-warna-warni.jpg" alt="Malang" class="w-full h-96 object-cover rounded-lg shadow-lg">
+                        <div class="text-blue text-center mt-2 text-xl font-semibold">Malang</div>
+                    </a>
+                    <!-- Wrapper Button -->
+                    <div class="flex justify-center mt-4">
+                        <button onclick="window.location.href='index-malang.html'" class="bg-teal-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-teal-700 hover:-translate-y-1 hover:scale-110">
+                            5 Best Attractions in Malang
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Slide 3 (Batu) -->
+                <div class="slide hidden">
+                    <a href="index-batu.html">
+                        <img src="Batu/img/preview kota batu.jpeg" alt="Batu" class="w-full h-96 object-cover rounded-lg shadow-lg">
+                        <div class="text-blue text-center mt-2 text-xl font-semibold">Batu</div>
+                    </a>
+                    <!-- Wrapper Button -->
+                    <div class="flex justify-center mt-4">
+                        <button onclick="window.location.href='index-batu.html'" class="bg-teal-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-teal-700 hover:-translate-y-1 hover:scale-110">
+                            5 Best Attractions in Batu
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Slide 4 (Banyuwangi) -->
+                <div class="slide hidden">
+                    <a href="index-banyuwangi.html">
+                        <img src="https://lh5.googleusercontent.com/p/AF1QipNJ9mp36c0Vlv5560mWD762SHvfDCo8yJkvK6V7=w540-h312-n-k-no" alt="Banyuwangi" class="w-full h-96 object-cover rounded-lg shadow-lg">
+                        <div class="text-blue text-center mt-2 text-xl font-semibold">Banyuwangi</div>
+                    </a>
+                    <!-- Wrapper Button -->
+                    <div class="flex justify-center mt-4">
+                        <button onclick="window.location.href='index-banyuwangi.html'" class="bg-teal-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-teal-700 hover:-translate-y-1 hover:scale-110">
+                            5 Best Attractions in Banyuwangi
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Kontrol Manual -->
+                <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-teal-600 text-white p-3 rounded-full focus:outline-none hover:bg-teal-700 transition duration-300" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-teal-600 text-white p-3 rounded-full focus:outline-none hover:bg-teal-700 transition duration-300" onclick="changeSlide(1)">&#10095;</button>
+            </div>
+        </section>
+
+        <section id="destination" class="py-16 bg-gradient-to-t from-teal-50 to-teal-100 ">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8 text-center">Main Destination</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-gray-100 p-4 rounded-lg shadow-lg text-center">
+                        <a href="index-surabaya.html">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Tugu_Pahlawan_Surabaya.jpg" alt="Surabaya" class="w-full h-96 object-cover rounded-lg shadow-lg mb-4">
+                        </a>
+                        <h3 class="text-xl font-semibold mb-2">Surabaya</h3>
+                        <button class="bg-teal-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-teal-700 hover:-translate-y-1 hover:scale-110" onclick="window.location.href='index-surabaya.html'">Explore Surabaya</button>
+                    </div>
+                    <!-- Malang -->
+                    <div class="bg-gray-100 p-4 rounded-lg shadow-lg text-center">
+                        <a href="index-malang.html">
+                            <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSjxARvYFsCvWGGbRrT8NyG-X1DjOpcah08oUyw6IN-ZoLHYlC2UIY6dWNBrG5tO-aNQq8mtaiSsVBND6yFpuO03VXmqFRBgErGSCQRIQ" alt="Surabaya" class="w-full h-96 object-cover rounded-lg shadow-lg mb-4">
+                        </a>
+                        <h3 class="text-xl font-semibold mb-2">Malang</h3>
+                        <button class="bg-teal-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-teal-700 hover:-translate-y-1 hover:scale-110" onclick="window.location.href='index-malang.html'">Explore Malang</button>
+                    </div>
+
+                    <!-- Batu -->
+                    <div class="bg-gray-100 p-4 rounded-lg shadow-lg text-center">
+                        <a href="index-batu.html">
+                            <img src="Batu\img\preview kota batu.jpeg" alt="Batu" class="w-full h-96 object-cover rounded-lg shadow-lg mb-4">
+                        </a>
+                        <h3 class="text-xl font-semibold mb-2">Batu</h3>
+                        <button class="bg-teal-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-teal-700 hover:-translate-y-1 hover:scale-110" onclick="window.location.href='index-batu.html'">Explore Batu</button>
+                    </div>
+
+                    <!-- Banyuwangi -->         
+                    <div class="bg-gray-100 p-4 rounded-lg shadow-lg text-center">
+                        <a href="index-banyuwangi.html">
+                            <img src="https://lh5.googleusercontent.com/p/AF1QipNJ9mp36c0Vlv5560mWD762SHvfDCo8yJkvK6V7=w540-h312-n-k-no" alt="Banyuwangi" class="w-full h-96 object-cover rounded-lg shadow-lg mb-4">
+                        </a>
+                        <h3 class="text-xl font-semibold mb-2">Banyuwangi</h3>
+                        <button class="bg-teal-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-teal-700 hover:-translate-y-1 hover:scale-110" onclick="window.location.href='index-banyuwangi.html'">Explore Banyuwangi</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <section id="contact" class="py-16 bg-cover bg-center" style="background-image: url('homepage/img/bg homepage 1.jpg');">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center text-white">Our Contact</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Alamat -->
+                <div class="text-center text-white">
+                    <h3 class="text-xl font-semibold mb-4">Our Office</h3>
+                    <p class="mb-2">Jl. Diponegoro No. 123</p>
+                    <p class="mb-2">Surabaya, Jawa Timur, Indonesia</p>
+                    <p class="mb-2">60123</p>
+                </div>
+    
+                <!-- Email -->
+                <div class="text-center text-white">
+                    <h3 class="text-xl font-semibold mb-4">Email Us</h3>
+                    <p class="mb-2">info@EastJavaVentura.com</p>
+                    <p class="mb-2">support@EastJavaVentura.com</p>
+                </div>
+    
+                <!-- Media Sosial -->
+                <div class="text-center text-white">
+                    <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+                    <div class="flex justify-center space-x-4">
+                        <span class="hover:text-teal-300 transition-colors">
+                            instagram
+                            @EastJavaVentura</span>
+                        <span class="hover:text-teal-300 transition-colors">
+                            @YouTube 
+                            youtube/EastJavaVenture</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="bg-teal-600 text-white py-4 ">
+        <div class="container mx-auto px-4 text-center">
+          <p>&copy; EastJavaVentura. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

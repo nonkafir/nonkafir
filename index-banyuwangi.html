@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="5 wisata terbaik di Banyuwangi, Jawa Timur. Jelajahi tempat-tempat wisata populer seperti Kawah Ijen, Pantai Pulau Merah, De Djawatan, dan lainnya.">
+  <title>5 Best Attractions in Banyuwangi - Jawa Timur</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans bg-gray-100 back">
+  <!-- Header -->
+  <header class="bg-teal-600 text-white fixed w-full z-10">
+    <div class="container mx-auto px-4">
+      <nav class="flex items-center justify-between py-4">
+        <a href="index.html" class="text-2xl font-bold hover:text-teal-300 transition-colors rounded-s-md">EastJavaVentura</a>
+        <ul class="flex space-x-6">
+          <li><a href="index.html" class="hover:text-teal-300 transition-colors">Back to Home</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="pt-16">
+    <section class="py-16 bg-gradient-to-t from-teal-50 to-teal-100">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold mb-8 text-center shadow md:shadow-lg">5 Best Attractions in Banyuwangi</h1>
+        
+        <!-- Gallery Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="placesGrid">
+          <!-- Places will be rendered here by JavaScript -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Template -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden transition-opacity duration-300">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96 transform scale-95 transition-transform duration-300">
+      <img id="modalImage" class="w-48 h-48 object-cover mx-auto mb-4 rounded" src="" alt="Modal Image">
+      <h2 id="modalTitle" class="text-xl font-semibold mb-2"></h2>
+      <p id="modalShortDescription" class="text-gray-600 mb-2"></p>
+      <p id="modalDescription" class="text-gray-600 mb-4"></p>
+      <p id="modalRating" class="text-yellow-500 mb-2"></p>
+      <div class="flex justify-between mb-4">
+        <a id="modalMapsLink" href="#" target="_blank" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-all transform hover:scale-105">See Maps</a>
+        <a id="modalTicketLink" href="#" target="_blank" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all transform hover:scale-105">Enter the Website</a>
+      </div>
+      <div class="mt-4 flex justify-end">
+        <button onclick="closeModal()" class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition-all transform hover:scale-105">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-teal-600 text-white py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2024 EastJavaVentura. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Daftar tempat wisata di Banyuwangi
+    const places = [
+  {
+    id: 'modal16',
+    city: 'Banyuwangi',
+    title: 'Kawah Ijen',
+    shortDescription: 'Active volcano with a blue fire phenomenon.',
+    description: 'Kawah Ijen is an active volcano in Banyuwangi famous for its blue fire phenomenon, one of the rare natural phenomena. This crater also offers stunning views with a turquoise sulfur lake.',
+    imgSrc: 'Banyuwangi/img/kawah ijen.jpeg',
+    mapsLink: 'https://maps.app.goo.gl/3SJm3wzKhxr2EYh49',
+    rating: 4.9,
+    ticketLink: 'https://www.instagram.com/explore/kawahijen/?hl=en'
+  },
+  {
+    id: 'modal17',
+    city: 'Banyuwangi',
+    title: 'Pantai Watu Dodol',
+    shortDescription: 'Combination of blue sea, green hills, and the panorama of the Bali Strait and Bali Island.',
+    description: 'Pantai Watu Dodol is one of the most beautiful beaches in Banyuwangi. Known for its white sand and an iconic small hill that can be accessed during low tide.',
+    imgSrc: 'Banyuwangi/img/pantai watu dodol.jpeg',
+    mapsLink: 'https://maps.app.goo.gl/SogqcW9GUpnKoFLC6',
+    rating: 4.7,
+    ticketLink: 'https://banyuwangi.tourism-information-center.com/'
+  },
+  {
+    id: 'modal18',
+    city: 'Banyuwangi',
+    title: 'De Djawatan',
+    shortDescription: 'Forest with giant trembesi trees, ideal for relaxing and taking photos.',
+    description: 'De Djawatan is a forest tourist area in Banyuwangi known for its towering giant trembesi trees and an atmosphere reminiscent of a fantasy film forest. This place offers a shady green view and is Instagrammable, perfect for relaxing or taking photos.',
+    imgSrc: 'Banyuwangi/img/de djawatan.jpeg',
+    mapsLink: 'https://maps.app.goo.gl/XA1ErTNfqSWQYVFE6',
+    rating: 4.8,
+    ticketLink: 'https://www.perhutani.co.id/tag/de-djawatan/'
+  },
+  {
+    id: 'modal19',
+    city: 'Banyuwangi',
+    title: 'Teluk Ijo (Green Bay)',
+    shortDescription: 'Hidden beach with clear green water and white sand.',
+    description: 'Teluk Ijo, or Green Bay, is a hidden beach in Banyuwangi with clear green water, white sand, and beautiful green cliffs. Its remote location means visitors must walk or use a boat from Rajegwesi Beach.',
+    imgSrc: 'Banyuwangi/img/teluk-ijo.jpeg',
+    mapsLink: 'https://maps.app.goo.gl/K4WkCv8KXZ19Y9uC6',
+    rating: 4.9,
+    ticketLink: 'http://geopark-ijen.jatimprov.go.id/detail-geosite/batuan-terobosan-teluk-hijau-.html'
+  },
+  {
+    id: 'modal20',  
+    city: 'Banyuwangi',
+    title: 'Taman Nasional Alas Purwo',
+    shortDescription: 'The oldest forest in Java Island with rich biodiversity.',
+    description: 'Alas Purwo is a national park in Banyuwangi known as the oldest forest in Java Island. This place has rich biodiversity, with dense forests, beaches, and wildlife such as banteng (wild cattle), deer, and rare birds. The famous Plengkung Beach (G-Land) is also located in this area, popular among surfers worldwide.',
+    imgSrc: 'Banyuwangi/img/alas-purwo.jpeg',
+    mapsLink: 'https://maps.app.goo.gl/o8R4XKmcDfAYuMYC6',
+    rating: 4.7,
+    ticketLink: 'https://tnalaspurwo.org/'
+  }
+];
+
+    // DOM elements
+const placesGrid = document.getElementById('placesGrid');
+const modal = document.getElementById('modal');
+
+// Fungsi untuk membuat elemen tempat wisata
+function createPlaceElement(place) {
+  const placeElement = document.createElement('div');
+  placeElement.className = 'bg-white p-6 rounded-lg shadow-lg cursor-pointer';
+  placeElement.innerHTML = `
+    <img class="w-full h-48 object-cover rounded transition-transform duration-300 transform hover:scale-105" src="${place.imgSrc}" alt="${place.title}">
+    <h3 class="text-xl font-semibold mt-2">${place.title}</h3>
+    <p class="text-gray-600">${place.shortDescription}</p>
+  `;
+  placeElement.onclick = () => openModal(place);
+  return placeElement;
+}
+
+// Menampilkan tempat wisata
+function displayPlaces() {
+  places.forEach(place => {
+    const placeElement = createPlaceElement(place);
+    placesGrid.appendChild(placeElement);
+  });
+}
+
+// Fungsi untuk membuka modal
+function openModal(place) {
+  document.getElementById('modalImage').src = place.imgSrc;
+  document.getElementById('modalTitle').innerText = place.title;
+  document.getElementById('modalShortDescription').innerText = place.shortDescription;
+  document.getElementById('modalDescription').innerText = place.description;
+  document.getElementById('modalRating').innerText = `Rating: ${place.rating} ⭐`;
+  document.getElementById('modalMapsLink').href = place.mapsLink;
+  document.getElementById('modalTicketLink').href = place.ticketLink;
+
+  modal.classList.remove('hidden', 'opacity-0');
+  setTimeout(() => {
+    modal.classList.add('opacity-100');
+  }, 0);
+}
+
+// Fungsi untuk menutup modal
+function closeModal() {
+  modal.classList.remove('opacity-100');
+  modal.classList.add('opacity-0');
+  setTimeout(() => {
+    modal.classList.add('hidden');
+  }, 300);
+}
+
+// Initialize
+displayPlaces();
+
+// Event listeners
+document.getElementById('closeModal').addEventListener('click', closeModal);
+  </script>
+</body>
+</html>

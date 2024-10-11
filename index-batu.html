@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="5 wisata terbaik di Batu, Jawa Timur. Jelajahi tempat-tempat wisata populer seperti Jatim Park 2, Batu Night Spectacular, Eco Green Park, dan lainnya.">
+  <title>5 Best Attractions in Batu - Jawa Timur</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans bg-gray-100 back">
+  <!-- Header -->
+  <header class="bg-teal-600 text-white fixed w-full z-10">
+    <div class="container mx-auto px-4">
+      <nav class="flex items-center justify-between py-4">
+        <a href="index.html" class="text-2xl font-bold hover:text-teal-300 transition-colors rounded-s-md">EastJavaVentura</a>
+        <ul class="flex space-x-6">
+          <li><a href="index.html" class="hover:text-teal-300 transition-colors">Back to Home</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="pt-16">
+    <section class="py-16 bg-gradient-to-t from-teal-50 to-teal-100">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold mb-8 text-center shadow md:shadow-lg">5 Best Attractions in Batu</h1>
+        
+        <!-- Gallery Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="placesGrid">
+          <!-- Places will be rendered here by JavaScript -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Template -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden transition-opacity duration-300">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96 transform scale-95 transition-transform duration-300">
+      <img id="modalImage" class="w-48 h-48 object-cover mx-auto mb-4 rounded" src="" alt="Modal Image">
+      <h2 id="modalTitle" class="text-xl font-semibold mb-2"></h2>
+      <p id="modalShortDescription" class="text-gray-600 mb-2"></p>
+      <p id="modalDescription" class="text-gray-600 mb-4"></p>
+      <p id="modalRating" class="text-yellow-500 mb-2"></p>
+      <div class="flex justify-between mb-4">
+        <a id="modalMapsLink" href="#" target="_blank" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-all transform hover:scale-105">See Maps</a>
+        <a id="modalTicketLink" href="#" target="_blank" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all transform hover:scale-105">Enter the Website</a>
+      </div>
+      <div class="mt-4 flex justify-end">
+        <button onclick="closeModal()" class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition-all transform hover:scale-105">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-teal-600 text-white py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2024 EastJavaVentura. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Daftar tempat wisata di Batu
+    const places = [
+  {
+    id: 'modal11',
+    city: 'Batu',
+    title: 'Jatim Park 2 (Batu Secret Zoo & Museum Satwa)',
+    shortDescription: 'Recreation park with a modern zoo and wildlife museum.',
+    description: 'Jatim Park 2 is one of the most popular recreational parks in Batu. It consists of Batu Secret Zoo, a modern zoo featuring various animals from around the world, and a Wildlife Museum showcasing replicas and fossils of prehistoric animals.',
+    imgSrc: 'Batu/img/jatim park 2.jpeg',
+    mapsLink: 'https://maps.app.goo.gl/8myNH2f1spwtt2EHA',
+    rating: 4.6,
+    ticketLink: 'https://jtp.id/jatimpark2/index.html'
+  },
+  {
+    id: 'modal12',
+    city: 'Batu',
+    title: 'Taman Wisata Selecta',
+    shortDescription: 'A fun playground park for families.',
+    description: 'Taman Wisata Selecta is a recreational park famous for its beautiful expansive flower gardens, swimming pools, and refreshing mountain views.',
+    imgSrc: 'Batu/img/selecta.jpeg',
+    mapsLink: 'https://maps.app.goo.gl/jKKcuYzn4Fn4tP889',
+    rating: 4.5,
+    ticketLink: 'https://selectawisata.id/'
+  },
+  {
+    id: 'modal13',
+    city: 'Batu',
+    title: 'Eco Green Park',
+    shortDescription: 'An environmentally friendly educational park with various attractions.',
+    description: 'Eco Green Park is an educational park focusing on eco-friendly concepts. It offers various rides and attractions, such as a mini zoo, vertical gardens, and a recycling garden that teaches the importance of nature conservation.',
+    imgSrc: 'Batu/img/eco green park.jpeg',
+    mapsLink: 'https://maps.app.goo.gl/eoFagjJFsvg6MQYSA',
+    rating: 4.4,
+    ticketLink: 'https://jtp.id/ecogreenpark/mobile/index.html'
+  },
+  {
+    id: 'modal14',
+    city: 'Batu',
+    title: 'Pemandian Air Panas Cangar',
+    shortDescription: 'Natural hot spring pool in the middle of a tropical forest.',
+    description: 'Pemandian Air Panas Cangar is a place that offers natural hot spring pools originating from the mountains. Surrounded by tropical forests, this location is perfect for relaxation while enjoying the cool air.',
+    imgSrc: 'Batu/img/pemandian air panas cangar.jpeg',
+    mapsLink: 'https://maps.app.goo.gl/ZHzZjXs6bv9aJMg58',
+    rating: 4.3,
+    ticketLink: 'https://www.instagram.com/explore/locations/238006317/pemandian-air-panas-cangar-batu-malang/?hl=en'
+  },
+  {
+    id: 'modal15',
+    city: 'Batu',
+    title: 'Kusuma Agrowisata',
+    shortDescription: 'Agro tourism with fruit picking experiences and recreational rides.',
+    description: 'Kusuma Agrowisata is an agro tourism destination that allows visitors to enjoy various fruit-picking activities such as apples, strawberries, oranges, and guavas. In addition, there are also various recreational rides like swimming pools, outbound games, and restaurants with garden views.',
+    imgSrc: 'Batu/img/kusuma agrowisata.jpeg',
+    mapsLink: 'https://maps.app.goo.gl/bgvzKoqaFtXHpyVBA',
+    rating: 4.5,
+    ticketLink: 'https://agrowisata.id/'
+  }
+];
+
+
+    // DOM elements
+const placesGrid = document.getElementById('placesGrid');
+const modal = document.getElementById('modal');
+
+// Fungsi untuk membuat elemen tempat wisata
+function createPlaceElement(place) {
+  const placeElement = document.createElement('div');
+  placeElement.className = 'bg-white p-6 rounded-lg shadow-lg cursor-pointer';
+  placeElement.innerHTML = `
+    <img class="w-full h-48 object-cover rounded transition-transform duration-300 transform hover:scale-105" src="${place.imgSrc}" alt="${place.title}">
+    <h3 class="text-xl font-semibold mt-2">${place.title}</h3>
+    <p class="text-gray-600">${place.shortDescription}</p>
+  `;
+  placeElement.onclick = () => openModal(place);
+  return placeElement;
+}
+
+// Menampilkan tempat wisata
+function displayPlaces() {
+  places.forEach(place => {
+    const placeElement = createPlaceElement(place);
+    placesGrid.appendChild(placeElement);
+  });
+}
+
+// Fungsi untuk membuka modal
+function openModal(place) {
+  document.getElementById('modalImage').src = place.imgSrc;
+  document.getElementById('modalTitle').innerText = place.title;
+  document.getElementById('modalShortDescription').innerText = place.shortDescription;
+  document.getElementById('modalDescription').innerText = place.description;
+  document.getElementById('modalRating').innerText = `Rating: ${place.rating} ⭐`;
+  document.getElementById('modalMapsLink').href = place.mapsLink;
+  document.getElementById('modalTicketLink').href = place.ticketLink;
+
+  modal.classList.remove('hidden', 'opacity-0');
+  setTimeout(() => {
+    modal.classList.add('opacity-100');
+  }, 0);
+}
+
+// Fungsi untuk menutup modal
+function closeModal() {
+  modal.classList.remove('opacity-100');
+  modal.classList.add('opacity-0');
+  setTimeout(() => {
+    modal.classList.add('hidden');
+  }, 300);
+}
+
+// Initialize
+displayPlaces();
+
+// Event listeners
+document.getElementById('closeModal').addEventListener('click', closeModal);
+  </script>
+</body>
+</html>

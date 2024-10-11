@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="5 wisata terbaik di Malang, Jawa Timur. Jelajahi tempat-tempat wisata populer seperti Alun-Alun Kota Malang, Jatim Park 1, Museum Angkut, dan lainnya.">
+  <title>5 Best Attractions in Malang - Jawa Timur</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans bg-gray-100 back">
+  <!-- Header -->
+  <header class="bg-teal-600 text-white fixed w-full z-10">
+    <div class="container mx-auto px-4">
+      <nav class="flex items-center justify-between py-4">
+        <a href="index.html" class="text-2xl font-bold hover:text-teal-300 transition-colors rounded-s-md">EastJavaVentura</a>
+        <ul class="flex space-x-6">
+          <li><a href="index.html" class="hover:text-teal-300 transition-colors">Back to Home</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="pt-16">
+    <section class="py-16 bg-gradient-to-t from-teal-50 to-teal-100">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold mb-8 text-center shadow md:shadow-lg">5 Best Attractions in Malang</h1>
+        
+        <!-- Gallery Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="placesGrid">
+          <!-- Places will be rendered here by JavaScript -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Template -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden transition-opacity duration-300">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96 transform scale-95 transition-transform duration-300">
+      <img id="modalImage" class="w-48 h-48 object-cover mx-auto mb-4 rounded" src="" alt="Modal Image">
+      <h2 id="modalTitle" class="text-xl font-semibold mb-2"></h2>
+      <p id="modalShortDescription" class="text-gray-600 mb-2"></p>
+      <p id="modalDescription" class="text-gray-600 mb-4"></p>
+      <p id="modalRating" class="text-yellow-500 mb-2"></p>
+      <div class="flex justify-between mb-4">
+        <a id="modalMapsLink" href="#" target="_blank" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-all transform hover:scale-105">See Maps</a>
+        <a id="modalTicketLink" href="#" target="_blank" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all transform hover:scale-105">Enter the Website</a>
+      </div>
+      <div class="mt-4 flex justify-end">
+        <button onclick="closeModal()" class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition-all transform hover:scale-105">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-teal-600 text-white py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2024 EastJavaVentura. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Daftar tempat wisata di Malang
+    const places = [
+  {
+    id: 'modal6',
+    city: 'Malang',
+    title: 'Alun-Alun Kota Malang',
+    shortDescription: 'A bustling center with a green park.',
+    description: 'Alun-Alun Kota Malang is a lively center and popular recreational spot. With its vast green park, fountain, and various sports facilities, it is an ideal place to relax.',
+    imgSrc: 'Malang/img/alun alun kota malang.jpeg',
+    mapsLink: 'https://maps.app.goo.gl/FfN5njiGrVpf8noh8',
+    rating: 4.5,
+    ticketLink: 'https://malangkota.go.id/tag/alun-alun-kota-malang/'
+  },
+  {
+    id: 'modal7',
+    city: 'Malang',
+    title: 'Jatim Park 1',
+    shortDescription: 'An amusement park for families.',
+    description: 'Jatim Park 1 is an amusement and educational park featuring various rides and museums. It is suitable for family tourism, with attractions like a dinosaur park and science rides.',
+    imgSrc: 'Malang/img/jatim park 1.jpeg',
+    mapsLink: 'https://maps.app.goo.gl/Tyn8YZhpMMiqHpwK7',
+    rating: 4.3,
+    ticketLink: 'https://www.jtp.id/'
+  },
+  {
+    id: 'modal8',
+    city: 'Malang',
+    title: 'Museum Angkut',
+    shortDescription: 'A museum of vehicles from various eras.',
+    description: 'Museum Angkut showcases various types of vehicles from different periods. The museum features themed photo areas with replicas of famous cities around the world.',
+    imgSrc: 'Malang/img/museum angkut.jpeg',
+    mapsLink: 'https://maps.app.goo.gl/bJLWX2qkJqVtRANT8',
+    rating: 4.6,
+    ticketLink: 'https://jtp.id/museumangkut/mobile/index.html'
+  },
+  {
+    id: 'modal9',
+    city: 'Malang',
+    title: 'Kampung Warna-Warni Jodipan',
+    shortDescription: 'A colorful destination with murals.',
+    description: 'Kampung Warna-Warni Jodipan is a vibrant destination featuring murals and interesting photo spots. Once a slum, it has now become a cheerful and unique tourist icon.',
+    imgSrc: 'Malang/img/kampung warna warni jodipan.jpeg',
+    mapsLink: 'https://maps.app.goo.gl/mwVgQr6jqovbkqoD6',
+    rating: 4.4,
+    ticketLink: 'https://bakesbangpol.malangkota.go.id/tag/kampung-warna-warni/'
+  },
+  {
+    id: 'modal10',
+    city: 'Malang',
+    title: 'Coban Rondo',
+    shortDescription: 'A waterfall with beautiful natural scenery.',
+    description: 'Coban Rondo is a popular waterfall in Malang that offers stunning natural views. It features camping areas and a maze garden, making it perfect for family recreation.',
+    imgSrc: 'Malang/img/coban rondo.jpeg',
+    mapsLink: 'https://maps.app.goo.gl/4Enfuy47J8tBZuFh7',
+    rating: 4.7,
+    ticketLink: 'https://www.instagram.com/cobanrondomalang/?hl=en'
+  }
+];
+
+    // DOM elements
+const placesGrid = document.getElementById('placesGrid');
+const modal = document.getElementById('modal');
+
+// Fungsi untuk membuat elemen tempat wisata
+function createPlaceElement(place) {
+  const placeElement = document.createElement('div');
+  placeElement.className = 'bg-white p-6 rounded-lg shadow-lg cursor-pointer';
+  placeElement.innerHTML = `
+    <img class="w-full h-48 object-cover rounded transition-transform duration-300 transform hover:scale-105" src="${place.imgSrc}" alt="${place.title}">
+    <h3 class="text-xl font-semibold mt-2">${place.title}</h3>
+    <p class="text-gray-600">${place.shortDescription}</p>
+  `;
+  placeElement.onclick = () => openModal(place);
+  return placeElement;
+}
+
+// Menampilkan tempat wisata
+function displayPlaces() {
+  places.forEach(place => {
+    const placeElement = createPlaceElement(place);
+    placesGrid.appendChild(placeElement);
+  });
+}
+
+// Fungsi untuk membuka modal
+function openModal(place) {
+  document.getElementById('modalImage').src = place.imgSrc;
+  document.getElementById('modalTitle').innerText = place.title;
+  document.getElementById('modalShortDescription').innerText = place.shortDescription;
+  document.getElementById('modalDescription').innerText = place.description;
+  document.getElementById('modalRating').innerText = `Rating: ${place.rating} ⭐`;
+  document.getElementById('modalMapsLink').href = place.mapsLink;
+  document.getElementById('modalTicketLink').href = place.ticketLink;
+
+  modal.classList.remove('hidden', 'opacity-0');
+  setTimeout(() => {
+    modal.classList.add('opacity-100');
+  }, 0);
+}
+
+// Fungsi untuk menutup modal
+function closeModal() {
+  modal.classList.remove('opacity-100');
+  modal.classList.add('opacity-0');
+  setTimeout(() => {
+    modal.classList.add('hidden');
+  }, 300);
+}
+
+// Initialize
+displayPlaces();
+
+// Event listeners
+document.getElementById('closeModal').addEventListener('click', closeModal);
+  </script>
+</body>
+</html>
